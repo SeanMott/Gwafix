@@ -13,7 +13,11 @@ static inline int32_t Gwafix_Shader_GetUniformLocation(Gwafix_Shader_Shader* sha
 		return -1;
 	}
 
-	return glGetUniformLocation(shader->id, name);
+	int32_t loc = glGetUniformLocation(shader->id, name);
+	if (loc == GL_INVALID_OPERATION)
+		LogData("Gwafix Error: NULL Shader Uniform Location || Shader Uniform: %s could not be found in current bound Shader!\n", name);
+
+	return loc;
 }
 
 //compiles a shader

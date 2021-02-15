@@ -122,7 +122,6 @@ extern "C" {
 	uint32_t Gwafix_VertexLayout_GetNativeAPIType(Gwafix_VertexLayout_Element type);
 
 #ifdef __cplusplus
-
 }
 #endif
 

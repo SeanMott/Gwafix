@@ -29,6 +29,20 @@ extern "C" {
 
 //window phone input callback params
 
+//window state callback types
+typedef void(*Gwafix_Display_CallbackPtr_WindowResize)(Gwafix_Display_CallbackPrams_Resize);
+typedef void(*Gwafix_Display_CallbackPtr_WindowClose)();
+typedef void(*Gwafix_Display_CallbackPtr_Focus)(Gwafix_Display_CallbackPrams_Focuse);
+
+//window desktop input callback types
+typedef void(*Gwafix_Display_CallbackPtr_MousePosition)(Gwafix_Display_CallbackPrams_MousePos);
+typedef void(*Gwafix_Display_CallbackPtr_MouseScroll)(Gwafix_Display_CallbackPrams_MouseScroll);
+typedef void(*Gwafix_Display_CallbackPtr_Key)(Gwafix_Display_CallbackPrams_Key);
+typedef void(*Gwafix_Display_CallbackPtr_MouseButton)(Gwafix_Display_CallbackPrams_MouseButton);
+typedef void(*Gwafix_Display_CallbackPtr_KeyType)(Gwafix_Display_CallbackPrams_KeyTyped);
+
+//window phone input callback types
+
 //create info struct for Display
 	typedef struct
 	{
