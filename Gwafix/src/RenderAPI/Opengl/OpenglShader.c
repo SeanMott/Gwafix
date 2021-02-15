@@ -219,17 +219,32 @@ void Gwafix_Shader_SetInt(Gwafix_Shader_Shader* shader, const char* name, int32_
 	glUniform1i(Gwafix_Shader_GetUniformLocation(shader, name), value);
 }
 
-void Gwafix_Shader_SetInt2(Gwafix_Shader_Shader* shader, const char* name, int32_t* value)
+void Gwafix_Shader_SetInt2(Gwafix_Shader_Shader* shader, const char* name, int32_t value1, int32_t value2)
+{
+	glUniform2i(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2);
+}
+
+void Gwafix_Shader_SetInt3(Gwafix_Shader_Shader* shader, const char* name, int32_t value1, int32_t value2, int32_t value3)
+{
+	glUniform3i(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2, value3);
+}
+
+void Gwafix_Shader_SetInt4(Gwafix_Shader_Shader* shader, const char* name, int32_t value1, int32_t value2, int32_t value3, int32_t value4)
+{
+	glUniform4i(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2, value3, value4);
+}
+
+void Gwafix_Shader_SetIntVec2(Gwafix_Shader_Shader* shader, const char* name, int32_t* value)
 {
 	glUniform2iv(Gwafix_Shader_GetUniformLocation(shader, name), 2, value);
 }
 
-void Gwafix_Shader_SetInt3(Gwafix_Shader_Shader* shader, const char* name, int32_t* value)
+void Gwafix_Shader_SetIntVec3(Gwafix_Shader_Shader* shader, const char* name, int32_t* value)
 {
 	glUniform3iv(Gwafix_Shader_GetUniformLocation(shader, name), 3, value);
 }
 
-void Gwafix_Shader_SetInt4(Gwafix_Shader_Shader* shader, const char* name, int32_t* value)
+void Gwafix_Shader_SetIntVec4(Gwafix_Shader_Shader* shader, const char* name, int32_t* value)
 {
 	glUniform4iv(Gwafix_Shader_GetUniformLocation(shader, name), 4, value);
 }
@@ -239,17 +254,32 @@ void Gwafix_Shader_SetUint(Gwafix_Shader_Shader* shader, const char* name, uint3
 	glUniform1ui(Gwafix_Shader_GetUniformLocation(shader, name), value);
 }
 
-void Gwafix_Shader_SetUint2(Gwafix_Shader_Shader* shader, const char* name, uint32_t* value)
+void Gwafix_Shader_SetUint2(Gwafix_Shader_Shader* shader, const char* name, uint32_t value1, uint32_t value2)
+{
+	glUniform2ui(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2);
+}
+
+void Gwafix_Shader_SetUint3(Gwafix_Shader_Shader* shader, const char* name, uint32_t value1, uint32_t value2, uint32_t value3)
+{
+	glUniform3ui(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2, value3);
+}
+
+void Gwafix_Shader_SetUint4(Gwafix_Shader_Shader* shader, const char* name, uint32_t value1, uint32_t value2, uint32_t value3, uint32_t value4)
+{
+	glUniform4ui(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2, value3, value4);
+}
+
+void Gwafix_Shader_SetUintVec2(Gwafix_Shader_Shader* shader, const char* name, uint32_t* value)
 {
 	glUniform2uiv(Gwafix_Shader_GetUniformLocation(shader, name), 2, value);
 }
 
-void Gwafix_Shader_SetUint3(Gwafix_Shader_Shader* shader, const char* name, uint32_t* value)
+void Gwafix_Shader_SetUintVec3(Gwafix_Shader_Shader* shader, const char* name, uint32_t* value)
 {
 	glUniform3uiv(Gwafix_Shader_GetUniformLocation(shader, name), 3, value);
 }
 
-void Gwafix_Shader_SetUint4(Gwafix_Shader_Shader* shader, const char* name, uint32_t* value)
+void Gwafix_Shader_SetUintVec4(Gwafix_Shader_Shader* shader, const char* name, uint32_t* value)
 {
 	glUniform4uiv(Gwafix_Shader_GetUniformLocation(shader, name), 4, value);
 }
@@ -259,19 +289,19 @@ void Gwafix_Shader_SetFloat(Gwafix_Shader_Shader* shader, const char* name, floa
 	glUniform1f(Gwafix_Shader_GetUniformLocation(shader, name), value);
 }
 
-void Gwafix_Shader_SetFloat2(Gwafix_Shader_Shader* shader, const char* name, float* value)
+void Gwafix_Shader_SetFloat2(Gwafix_Shader_Shader* shader, const char* name, float value1, float value2)
 {
-	glUniform2fv(Gwafix_Shader_GetUniformLocation(shader, name), 2, value);
+	glUniform2f(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2);
 }
 
-void Gwafix_Shader_SetFloat3(Gwafix_Shader_Shader* shader, const char* name, float* value)
+void Gwafix_Shader_SetFloat3(Gwafix_Shader_Shader* shader, const char* name, float value1, float value2, float value3)
 {
-	glUniform3fv(Gwafix_Shader_GetUniformLocation(shader, name), 3, value);
+	glUniform3f(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2, value3);
 }
 
-void Gwafix_Shader_SetFloat4(Gwafix_Shader_Shader* shader, const char* name, float* value)
+void Gwafix_Shader_SetFloat4(Gwafix_Shader_Shader* shader, const char* name, float value1, float value2, float value3, float value4)
 {
-	glUniform4fv(Gwafix_Shader_GetUniformLocation(shader, name), 4, value);
+	glUniform4f(Gwafix_Shader_GetUniformLocation(shader, name), value1, value2, value3, value4);
 }
 
 void Gwafix_Shader_SetVec2(Gwafix_Shader_Shader* shader, const char* name, float* value)
