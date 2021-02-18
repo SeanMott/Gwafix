@@ -78,24 +78,24 @@ void Gwafix_VertexBuffer_Layout(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_Verte
 		return;
 	}
 
-	uint32_t stride = 0, offset = 0;//, pointerCount = 0;
+	uint32_t offset = 0, totalCompCount = 0;
+	uint32_t currentCompCount = 0, currentCompDatatype = 0;
+
+	//gets total component count
 	for (uint32_t i = 0; i < layout->elementCount; i++)
+		totalCompCount += Gwafix_VertexLayout_GetComponentCount(layout->elements[i]);
+
+	//sets attrib pointer
+	for (uint32_t pointer = 0; pointer < layout->elementCount; pointer++)
 	{
-		if (!layout->elements[i])
-		{
-			LogData("NULL Layout Element (Opengl) || Can not set layout as layout is incomplete or NULL! Pos:%i\n", i);
-			return;
-		}
+		currentCompCount = Gwafix_VertexLayout_GetComponentCount(layout->elements[pointer]);
+		currentCompDatatype = Gwafix_VertexLayout_GetNativeAPIType(layout->elements[pointer]);
 
-		uint32_t type = Gwafix_VertexLayout_GetNativeAPIType(layout->elements[i]),
-			size = Gwafix_VertexLayout_GetDataTypeSize(layout->elements[i]),
-			count = Gwafix_VertexLayout_GetComponentCount(layout->elements[i]);
-		glVertexAttribPointer(i, count, type, layout->normalize[i], size, (void*)offset);
-		glEnableVertexAttribArray(i);
+		glVertexAttribPointer(pointer, currentCompCount, currentCompDatatype,
+			layout->normalize[pointer], totalCompCount * sizeof(float), (void*)offset);
+		glEnableVertexAttribArray(pointer);
 
-		stride += size;
-		offset += count;
-		//pointerCount++;
+		offset += (currentCompCount * sizeof(currentCompDatatype));
 	}
 }
 
@@ -119,7 +119,7 @@ void Gwafix_VertexBuffer_Unbind(Gwafix_VertexBuffer_Buffer* buffer)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, uint32_t startIndex)
+void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_VertexBuffer_DrawType primitiveType, uint32_t startIndex)
 {
 	if (!buffer)
 	{
@@ -127,5 +127,8 @@ void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, uint32_t start
 		return;
 	}
 
-	glDrawArrays(GL_TRIANGLES, startIndex, buffer->size);
+	if(primitiveType == Gwafix_PrimitiveType_Triangles)
+		glDrawArrays(GL_TRIANGLES, startIndex, buffer->size);
+	else if(primitiveType == Gwafix_PrimitiveType_Points)
+		glDrawArrays(GL_POINTS, startIndex, buffer->size);
 }
