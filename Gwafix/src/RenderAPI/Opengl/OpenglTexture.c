@@ -11,7 +11,7 @@
 
 #define EXTENTION_LENGTH_CAP 20
 
-Gwafix_Texture_Texture* Gwafix_Texture_Create2D(const char* path)
+Gwafix_Texture_Texture* Gwafix_Texture_Create2D(const char* path, bool makeBackgroundTrans)
 {
 	if (!path)
 	{
@@ -81,7 +81,8 @@ Gwafix_Texture_Texture* Gwafix_Texture_Create2D(const char* path)
 		//PNG
 		else if (Gwafix_FileHandler_StringMatch(extention, "png"))
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture->width, texture->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, (makeBackgroundTrans == true ? GL_RGBA : GL_RGB),
+				texture->width, texture->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		}
 
 		//if not supported

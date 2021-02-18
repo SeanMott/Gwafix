@@ -32,7 +32,7 @@ extern "C" {
 	} Gwafix_Texture_Texture;
 
 	//creates a Texture 2D
-	Gwafix_Texture_Texture* Gwafix_Texture_Create2D(const char* path);
+	Gwafix_Texture_Texture* Gwafix_Texture_Create2D(const char* path, bool makeBackgroundTrans);
 	//add create methods for other Texture types
 
 	//destroys a Texture

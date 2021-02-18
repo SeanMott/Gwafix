@@ -65,18 +65,6 @@ Gwafix_Display_Display* Gwafix_Display_Create(Gwafix_Display_CreateInfo* info)
 		return NULL;
 	}
 	glfwMakeContextCurrent(display->window); //Make the window's context current
-	
-	//inits the Graphic Context
-	display->context = Gwafix_GraphicContext_Create(display->window);
-	if (!display->context)
-	{
-		LogError("Display", "Failed to set up Graphic Context");
-		Gwafix_Display_Destroy(display);
-		return NULL;
-	}
-
-	//sets clear color
-	Gwafix_GraphicContext_ClearColorVec(display->context, info->clearColor);
 
 	//set method call backs
 	glfwSetErrorCallback(GLFWErrorCallBack);
@@ -88,6 +76,18 @@ Gwafix_Display_Display* Gwafix_Display_Create(Gwafix_Display_CreateInfo* info)
 	glfwSetScrollCallback(display->window, scroll_callback);//mouse scroll
 	glfwSetCharCallback(display->window, character_callback); //type input
 	glfwSetWindowFocusCallback(display->window, window_focus_callback); //sets focus
+
+	//inits the Graphic Context
+	display->context = Gwafix_GraphicContext_Create(display->window);
+	if (!display->context)
+	{
+		LogError("Display", "Failed to set up Graphic Context");
+		Gwafix_Display_Destroy(display);
+		return NULL;
+	}
+
+	//sets clear color
+	Gwafix_GraphicContext_ClearColorVec(display->context, info->clearColor);
 
 	//sets window size
 	Gwafix_Display_Resize(display, info->width, info->height, 0, 0);
