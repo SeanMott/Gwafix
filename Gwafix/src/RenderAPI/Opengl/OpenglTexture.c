@@ -73,7 +73,7 @@ Gwafix_Texture_Texture* Gwafix_Texture_Create2D(const char* path)
 	if (data)
 	{
 		//JPEG
-		if (Gwafix_FileHandler_StringMatch(extention, "jpeg"))
+		if (Gwafix_FileHandler_StringMatch(extention, "jpg"))
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture->width, texture->height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		}
