@@ -13,6 +13,9 @@ extern "C" {
 	//reads a binary file from a path
 	//const char* Gwafix_FileHander_ReadBinaryFile(const char* filePath);
 
+	//checks if a string matches
+	bool Gwafix_FileHandler_StringMatch(const char* string1, const char* string2);
+
 #ifdef __cplusplus
 
 }
