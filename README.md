@@ -18,7 +18,6 @@ Example: Gwafix_Display_Create || creates a Display
 - Phone "Window" Callbacks
 - Texture Tilemaps
 - Framebuffers
-- Geo Shaders
 - Compute Shaders
 <br />
 - Render API specific data API

@@ -119,7 +119,7 @@ void Gwafix_VertexBuffer_Unbind(Gwafix_VertexBuffer_Buffer* buffer)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, uint32_t startIndex)
+void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_VertexBuffer_DrawType primitiveType, uint32_t startIndex)
 {
 	if (!buffer)
 	{
@@ -127,5 +127,8 @@ void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, uint32_t start
 		return;
 	}
 
-	glDrawArrays(GL_TRIANGLES, startIndex, buffer->size);
+	if(primitiveType == Gwafix_PrimitiveType_Triangles)
+		glDrawArrays(GL_TRIANGLES, startIndex, buffer->size);
+	else if(primitiveType == Gwafix_PrimitiveType_Points)
+		glDrawArrays(GL_POINTS, startIndex, buffer->size);
 }

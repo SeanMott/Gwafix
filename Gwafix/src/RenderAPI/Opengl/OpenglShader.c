@@ -75,7 +75,7 @@ static inline int32_t Gwafix_Shader_CompileShader(const char* source, uint32_t t
 	return shader;
 }
 
-Gwafix_Shader_Shader* Gwafix_Shader_CreateVertex(const char* vertexPath, const char* fragmentPath)
+Gwafix_Shader_Shader* Gwafix_Shader_CreateVertex(const char* vertexPath, const char* fragmentPath, const char* geometryPath)
 {
 	//read vertex and fragment path
 	int32_t v = Gwafix_Shader_CompileShader(Gwafix_FileHander_ReadTextFile(vertexPath), GL_VERTEX_SHADER);
@@ -92,16 +92,28 @@ Gwafix_Shader_Shader* Gwafix_Shader_CreateVertex(const char* vertexPath, const c
 		return NULL;
 	}
 
+	int32_t g;
+	if (geometryPath)
+	{
+		g = Gwafix_Shader_CompileShader(Gwafix_FileHander_ReadTextFile(geometryPath), GL_GEOMETRY_SHADER);
+		if (g == -1)
+			return NULL;
+	}
+
 	//make shader
 	Gwafix_Shader_Shader* shader = malloc(sizeof(Gwafix_Shader_Shader));
 	shader->id = glCreateProgram();
 	glAttachShader(shader->id, v);
 	glAttachShader(shader->id, f);
+	if(geometryPath)
+		glAttachShader(shader->id, g);
 	glLinkProgram(shader->id);
 
 	//clean
 	glDeleteShader(v);
 	glDeleteShader(f);
+	if(geometryPath)
+		glDeleteShader(g);
 
 	//check if linked correctly
 	int  success;
@@ -120,7 +132,7 @@ Gwafix_Shader_Shader* Gwafix_Shader_CreateVertex(const char* vertexPath, const c
 	return shader;
 }
 
-Gwafix_Shader_Shader* Gwafix_Shader_CreateVertexSource(const char* vertexSource, const char* fragmentSource)
+Gwafix_Shader_Shader* Gwafix_Shader_CreateVertexSource(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
 {
 	if (!vertexSource)
 	{
@@ -149,16 +161,28 @@ Gwafix_Shader_Shader* Gwafix_Shader_CreateVertexSource(const char* vertexSource,
 		return NULL;
 	}
 
+	int32_t g;
+	if (geometrySource)
+	{
+		g = Gwafix_Shader_CompileShader(geometrySource, GL_GEOMETRY_SHADER);
+		if (g == -1)
+			return NULL;
+	}
+
 	//make shader
 	Gwafix_Shader_Shader* shader = malloc(sizeof(Gwafix_Shader_Shader));
 	shader->id = glCreateProgram();
 	glAttachShader(shader->id, v);
 	glAttachShader(shader->id, f);
+	if (geometrySource)
+		glAttachShader(shader->id, g);
 	glLinkProgram(shader->id);
 
 	//clean
 	glDeleteShader(v);
 	glDeleteShader(f);
+	if (geometrySource)
+		glDeleteShader(g);
 
 	//check if linked correctly
 	int  success;

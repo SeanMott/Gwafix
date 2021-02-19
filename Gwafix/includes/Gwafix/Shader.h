@@ -14,8 +14,9 @@ extern "C" {
 	typedef enum
 	{
 		Gwafix_ShaderType_Vertex = 0x01,
-		Gwafix_ShaderType_Geometry = 0x02,
-		Gwafix_ShaderType_Compute = 0x04
+		Gwafix_ShaderType_Compute = 0x02
+		//Gwafix_ShaderType_Geometry = 0x02,
+		//Gwafix_ShaderType_Compute = 0x04
 
 	} Gwafix_Shader_ShaderType;
 
@@ -24,16 +25,14 @@ extern "C" {
 	{
 		uint32_t id;
 		//seartched uniforms
-		uint8_t type : 3; //0b00000000
+		uint8_t type : 2; //0b00000000
 
 	} Gwafix_Shader_Shader;
 
 	//creates a vertex Shader
-	Gwafix_Shader_Shader* Gwafix_Shader_CreateVertex(const char* vertexPath, const char* fragmentPath);
+	Gwafix_Shader_Shader* Gwafix_Shader_CreateVertex(const char* vertexPath, const char* fragmentPath, const char* geometryPath);
 	//creates a vertex Shader from source
-	Gwafix_Shader_Shader* Gwafix_Shader_CreateVertexSource(const char* vertexSource, const char* fragmentSource);
-	//creates a geometry Shader
-	//Gwafix_Shader_Shader* Gwafix_Shader_CreateGeometry(const char* geometryPath);
+	Gwafix_Shader_Shader* Gwafix_Shader_CreateVertexSource(const char* vertexSource, const char* fragmentSource, const char* geometrySource);
 	//creates a compute Shader
 	//Gwafix_Shader_Shader* Gwafix_Shader_CreateCompute(const char* computePath);
 	//destroys a Shader
