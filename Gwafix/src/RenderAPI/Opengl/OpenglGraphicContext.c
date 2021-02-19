@@ -74,7 +74,7 @@ void Gwafix_GraphicContext_UseZBuffer(Gwafix_Context* context, bool state)
 		return;
 	}
 
-	(state == true ? glEnable(GL_DEPTH) : glDisable(GL_DEPTH));
+	(state == true ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST));
 	context->isZBuffer = state;
 }
 

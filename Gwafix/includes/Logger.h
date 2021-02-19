@@ -42,4 +42,20 @@
 
 #endif
 
+#ifndef LogWarning(code, message)
+#define LogWarning(code, message)
+#endif
+#ifndef LogError(code, message)
+#define LogError(code, message)
+#endif
+#ifndef LogFatalError(code, message)
+#define LogFatalError(code, message)
+#endif
+#ifndef LogData(formate, ...)
+#define LogData(formate, ...)
+#endif
+#ifndef LogFatalData(formate, ...)
+#define LogFatalData(formate, ...)
+#endif
+
 #endif

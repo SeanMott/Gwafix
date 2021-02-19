@@ -78,24 +78,24 @@ void Gwafix_VertexBuffer_Layout(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_Verte
 		return;
 	}
 
-	uint32_t stride = 0, offset = 0;//, pointerCount = 0;
+	uint32_t offset = 0, totalCompCount = 0;
+	uint32_t currentCompCount = 0, currentCompDatatype = 0;
+
+	//gets total component count
 	for (uint32_t i = 0; i < layout->elementCount; i++)
+		totalCompCount += Gwafix_VertexLayout_GetComponentCount(layout->elements[i]);
+
+	//sets attrib pointer
+	for (uint32_t pointer = 0; pointer < layout->elementCount; pointer++)
 	{
-		if (!layout->elements[i])
-		{
-			LogData("NULL Layout Element (Opengl) || Can not set layout as layout is incomplete or NULL! Pos:%i\n", i);
-			return;
-		}
+		currentCompCount = Gwafix_VertexLayout_GetComponentCount(layout->elements[pointer]);
+		currentCompDatatype = Gwafix_VertexLayout_GetNativeAPIType(layout->elements[pointer]);
 
-		uint32_t type = Gwafix_VertexLayout_GetNativeAPIType(layout->elements[i]),
-			size = Gwafix_VertexLayout_GetDataTypeSize(layout->elements[i]),
-			count = Gwafix_VertexLayout_GetComponentCount(layout->elements[i]);
-		glVertexAttribPointer(i, count, type, layout->normalize[i], size, (void*)offset);
-		glEnableVertexAttribArray(i);
+		glVertexAttribPointer(pointer, currentCompCount, currentCompDatatype,
+			layout->normalize[pointer], totalCompCount * sizeof(float), (void*)offset);
+		glEnableVertexAttribArray(pointer);
 
-		stride += size;
-		offset += count;
-		//pointerCount++;
+		offset += (currentCompCount * sizeof(currentCompDatatype));
 	}
 }
 
