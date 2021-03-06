@@ -24,8 +24,8 @@ extern "C" {
 #define Gwafix_Display_CallbackPrams_Key int32_t key, int32_t scancode, int32_t action, int32_t mods
 #define Gwafix_Display_CallbackPrams_KeyTyped uint32_t key
 #define Gwafix_Display_CallbackPrams_MouseButton int32_t button, int32_t action, int32_t mods
-#define Gwafix_Display_CallbackPrams_MousePos double xPos, double yPos
-#define Gwafix_Display_CallbackPrams_MouseScroll double xOffset, double yOffset
+#define Gwafix_Display_CallbackPrams_MousePos double xpos, double ypos
+#define Gwafix_Display_CallbackPrams_MouseScroll double xoffset, double yoffset
 
 //window phone input callback params
 

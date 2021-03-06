@@ -8,6 +8,7 @@
 extern "C" {
 #endif
 
+#include <Gwafix\DrawTypePrimitives.h>
 #include <Gwafix\BufferLayout.h>
 #include <stdint.h>
 
@@ -26,14 +27,6 @@ extern "C" {
 
 	} Gwafix_VertexBuffer_Buffer;
 
-	//defines some drawing primitives
-	typedef enum
-	{
-		Gwafix_PrimitiveType_Triangles,
-		Gwafix_PrimitiveType_Points
-
-	} Gwafix_VertexBuffer_DrawType;
-
 	//creates a static buffer
 	Gwafix_VertexBuffer_Buffer* Gwafix_VertexBuffer_CreateStatic(float* vertices, uint32_t size);
 	//creates a dynamic buffer
@@ -50,7 +43,7 @@ extern "C" {
 	void Gwafix_VertexBuffer_Unbind(Gwafix_VertexBuffer_Buffer* buffer);
 
 	//draws a buffer || assumes it's already been bound
-	void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_VertexBuffer_DrawType primitiveType, uint32_t startIndex);
+	void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_DrawType_Type primitiveType, uint32_t startIndex);
 
 #ifdef __cplusplus
 

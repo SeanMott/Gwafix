@@ -321,6 +321,7 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 				continue;
 			}
 
+			//LogData("%d, %d\n", xpos, ypos);
 			display->onMousePositionCallback[i](xpos, ypos);
 		}
 	}

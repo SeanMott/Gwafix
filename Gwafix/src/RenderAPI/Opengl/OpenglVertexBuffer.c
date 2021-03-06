@@ -119,7 +119,7 @@ void Gwafix_VertexBuffer_Unbind(Gwafix_VertexBuffer_Buffer* buffer)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_VertexBuffer_DrawType primitiveType, uint32_t startIndex)
+void Gwafix_VertexBuffer_Draw(Gwafix_VertexBuffer_Buffer* buffer, Gwafix_DrawType_Type primitiveType, uint32_t startIndex)
 {
 	if (!buffer)
 	{

@@ -52,7 +52,7 @@
 #define LogFatalError(code, message)
 #endif
 #ifndef LogData(formate, ...)
-#define LogData(formate, ...)
+#define LogData(formate, ...) printf(formate, __VA_ARGS__);
 #endif
 #ifndef LogFatalData(formate, ...)
 #define LogFatalData(formate, ...)
